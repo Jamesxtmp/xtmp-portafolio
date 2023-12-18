@@ -1,21 +1,15 @@
 import useTheme from "./hooks/useTheme"
 
-import { Link, Route } from "wouter";
+import { Route } from "wouter";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import DefaultNavbar from "./components/DefaultNavbar";
 
 function App () {
   const { handleTheme } = useTheme()
   return (
     <div className="dark:bg-[#0d1117] w-full h-[100vh] dark:text-white">
-      <nav>
-        <Link href="/home">
-          <a className="">Home</a>
-        </Link>
-        <Link href="/about">
-          <a className="">About</a>
-        </Link>
-      </nav>
+      <DefaultNavbar />
       <Route path="/home" component={Home} ></Route>
       <Route path="/about" component={About} ></Route>
       {/* <Route path="/users/:name">{( params ) => <div>Hello, {params.name}!</div>}</Route> */}
@@ -28,4 +22,4 @@ function App () {
   )
 }
 
-export default App
+export default App 
