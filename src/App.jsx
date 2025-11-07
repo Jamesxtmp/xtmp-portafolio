@@ -15,7 +15,7 @@ function App () {
         </div>
         <Route path="/" component={Home} ></Route>
         <Route path="/about" component={About} ></Route>
-        {/* <Route path="/users/:name">{( params ) => <div>Hello, {params.name}!</div>}</Route> */}
+        {/* <Route path="/users/:name">{( params ) => <div>Hello, {params.name}!</div>}</Route> */} 
       </Background>
     </div>
   )
