@@ -10,6 +10,6 @@ export default {
     extend: {},
   },
   plugins: [
-    import( 'flowbite/plugin' )
+    require( 'flowbite/plugin' )
   ],
 }
