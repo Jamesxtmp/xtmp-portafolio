@@ -10,6 +10,7 @@
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
+    "firebase": "^10.14.1",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
     "keep-react": "^1.1.0",

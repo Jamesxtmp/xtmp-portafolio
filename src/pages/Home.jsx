@@ -2,11 +2,23 @@ import { TypeAnimation } from 'react-type-animation';
 import { FaLinkedin } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { HiChevronDoubleDown } from "react-icons/hi2";
-
+import { useState, useEffect } from 'react';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { app } from '../../firebase';
 
 import { Link } from 'wouter';
 export default function Home () {
-
+const [photoURL, setPhotoURL] = useState(null);
+useEffect(() => {
+    const storage = getStorage(app);
+    // ruta dentro del storage (por ejemplo: 'avatars/mi-foto.jpg')
+    const imageRef = ref(storage, 'My030925.webp');
+    getDownloadURL(imageRef)
+      .then(url => setPhotoURL(url))
+      .catch(err => {
+        console.error('Error obteniendo imagen desde Storage:', err);
+      });
+  }, []);
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="text-center text-5xl">¡Hola!</div>
@@ -15,10 +27,9 @@ export default function Home () {
         <div className="w-[160px] aspect-square dark:bg-purple-900 bg-amber-900 flex items-center justify-center rounded-full blur-lg"></div>
         <img
           className="absolute w-[150px] aspect-square object-cover rounded-full"
-          src="https://scontent-qro1-2.xx.fbcdn.net/v/t39.30808-6/288501725_101379759293568_5747191995011270462_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeG7XQah9y2uJ-l2y2dG1IW2EzPjoNWsjSYTM-Og1ayNJkGjvYxBC4M31l10jxrk5Vr4iIoW_AkjYSrzEuKZ99KV&_nc_ohc=XFp4ndawUV4AX8y4Kaf&_nc_ht=scontent-qro1-2.xx&oh=00_AfAnY90ncaIpKN_p1g6rS71db1Jl4aaoFMIjcr0USDQfBw&oe=6590EE6E"
+          src={photoURL ?? "https://via.placeholder.com/150"}
           alt="Foto de perfil" />
       </div>
-      <div className="text-center text-4xl">Ingeniería </div>
       <TypeAnimation
         sequence={[
           // Same substring at the start will only be typed out once, initially
